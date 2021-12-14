@@ -10,10 +10,8 @@ import net.serenitybdd.screenplay.conditions.Check;
 
 import static co.com.qr.capacitaciones.web.userinterface.reserva.MainReserva.*;
 import static net.serenitybdd.screenplay.Tasks.instrumented;
-import static co.com.qr.capacitaciones.web.interations.comunes.SwichtFrame.cambiarFrame;
-import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isEnabled;
 
-public class Llenardatosiniciales implements Task {
+public class LlenarDatosFechaEspecifica implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
 
@@ -23,8 +21,8 @@ public class Llenardatosiniciales implements Task {
 
         actor.attemptsTo(
         Check.whether(BTN_ACEPTAR.resolveFor(actor).isCurrentlyEnabled()).andIfSo(
-                Click.on(BTN_ACEPTAR)
-        ));
+                Click.on(BTN_ACEPTAR))
+        );
 
          actor.attemptsTo(
             /*Ingreso de Origen y destino*/
@@ -33,12 +31,21 @@ public class Llenardatosiniciales implements Task {
             Click.on(LBL_ORIGEN.of(DatosPrueba.obtener("origen"))),
             Click.on(TXT_DESTINO),
             Type.theValue(DatosPrueba.obtener("destino")).into(TXT_DESTINO),
-            Click.on(LBL_ORIGEN.of(DatosPrueba.obtener("destino"))));
+            Click.on(LBL_ORIGEN.of(DatosPrueba.obtener("destino")))
+         );
 
+         while(!LBL_MES_IZQUIERDA.resolveFor(actor).containsText("Junio")){
+             actor.attemptsTo(
+                     Click.on(FLECHA_SIGUIENTE)
+             );
+         }
+
+         /*Ingreso de fechas en el calendario*/
         actor.attemptsTo(
-            /*Ingreso de fechas en el calendario*/
+                Esperar.esperarSegundos(2000),
                 Click.on(FECHAINICIAL.of(DatosPrueba.obtener("fecha_inicial"))),
-            Click.on(FECHAFINAL.of(DatosPrueba.obtener("fecha_final"))));
+                Click.on(FECHAFINAL.of(DatosPrueba.obtener("fecha_final")))
+        );
 
         actor.attemptsTo(
             /*Dar click en el boton buscar*/
@@ -47,8 +54,8 @@ public class Llenardatosiniciales implements Task {
 
     }
 
-    public static Llenardatosiniciales datosIniciales()
+    public static LlenarDatosFechaEspecifica datosFechaEspecificaTask()
     {
-        return instrumented(Llenardatosiniciales.class);
+        return instrumented(LlenarDatosFechaEspecifica.class);
     }
 }

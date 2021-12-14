@@ -6,11 +6,13 @@ import cucumber.api.java.es.Cuando;
 import cucumber.api.java.es.Dado;
 import cucumber.api.java.es.Entonces;
 import net.serenitybdd.screenplay.actors.OnlineCast;
+import net.serenitybdd.screenplay.targets.EnsureFieldVisible;
 
 import java.util.List;
 import java.util.Map;
 
 import static co.com.qr.capacitaciones.web.taks.opensite.OpenSiteTask.openSiteCapaVivaAir;
+import static co.com.qr.capacitaciones.web.taks.reservar.LlenarDatosFechaEspecifica.datosFechaEspecificaTask;
 import static co.com.qr.capacitaciones.web.taks.reservar.Llenardatosiniciales.datosIniciales;
 import static net.serenitybdd.screenplay.actors.OnStage.*;
 
@@ -32,9 +34,19 @@ public class reservarstepdefinitions {
         theActorInTheSpotlight().attemptsTo(datosIniciales());
     }
 
-    @Entonces("^el usuario deberia ver los resultados$")
-    public void elUsuarioDeberiaVerLosResultados() throws Exception {
+    @Cuando("^realiza la reserva con los datos para los meses de junio y julio de 2022$")
+    public void realizaLaReservaConLosDatosParaLosMesesDeJunioYDulioDe2022() throws Exception {
+        theActorInTheSpotlight().attemptsTo(openSiteCapaVivaAir());
+        theActorInTheSpotlight().attemptsTo(datosFechaEspecificaTask());
 
     }
+    @Entonces("^el usuario deberia ver los resultados$")
+    public void elUsuarioDeberiaVerLosResultados() throws Exception {
+        theActorInTheSpotlight().attemptsTo();
+    }
 
+    @Entonces("^el usuario deberia ver los vuelos para la fecha especificada$")
+    public void elUsuarioDeberiaVerLosVuelosParaLaFechaEspecificada() throws Exception {
+        theActorInTheSpotlight().attemptsTo();
+    }
 }

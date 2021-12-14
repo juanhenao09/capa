@@ -13,7 +13,8 @@ import java.io.IOException;
     features ="src/test/resources/co.com.qr.capacitaciones.web/features/reservar/reserva_exitosa.feature",
     snippets = SnippetType.CAMELCASE,
     glue = {"co.com.qr.capacitaciones.web.stepdefinitions.reservar"},
-    plugin = {"json:target/cucumber_json/cucumber.json"})
+    plugin = {"json:target/cucumber_json/cucumber.json"},
+    tags = "@TestCase2")
 @RunWith(RunnerCapaWeb.class)
 public class reservarrunner {
     @BeforeRunner
