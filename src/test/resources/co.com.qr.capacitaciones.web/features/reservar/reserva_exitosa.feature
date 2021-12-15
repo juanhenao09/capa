@@ -12,7 +12,7 @@ Característica: Aplicativo Viva Air
     Ejemplos:
       | origen | destino | fecha_inicial |fecha_final|
       ##@externaldata@./src/test/resources/co.com.qr.capacitaciones.web/datadriver/reservar/Reserva.xlsx@Datos
-	|Medellín|Cartagena|17|5|
+	|Medellín|Cartagena|17|11|
 
 
   @TestCase2
@@ -25,4 +25,4 @@ Característica: Aplicativo Viva Air
     Ejemplos:
       | origen | destino | fecha_inicial |fecha_final|
       ##@externaldata@./src/test/resources/co.com.qr.capacitaciones.web/datadriver/reservar/Reserva.xlsx@Datos
-	|Medellín|Cartagena|17|5|
+	|Medellín|Cartagena|17|11|
